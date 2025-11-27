@@ -234,6 +234,7 @@
     section:nth-child(2) { animation-delay: 0.1s; }
     section:nth-child(3) { animation-delay: 0.2s; }
     section:nth-child(4) { animation-delay: 0.3s; }
+    section:nth-child(5) { animation-delay: 0.4s; }
 
     @keyframes fadeInUp {
       from {
@@ -305,7 +306,7 @@
       border-bottom: 1px dashed var(--border-color);
     }
 
-    .contenido {
+      .contenido {
       display: flex;
       gap: 45px;
       align-items: center;
@@ -328,7 +329,7 @@
       color: var(--text-primary);
     }
 
-    .tarjeta-grafico {
+      .tarjeta-grafico {
       flex: 1;
       display: flex;
       justify-content: center;
@@ -422,6 +423,50 @@
     }
     [data-theme="dark"] .section-dependencia h1 {
       color: #85c1e9;
+    }
+
+    /* Video - Rojo */
+    .section-video::before {
+      background: linear-gradient(90deg, #e74c3c, #f1948a);
+    }
+    .section-video .seccion-icono {
+      background: linear-gradient(135deg, #e74c3c, #f1948a);
+    }
+    .section-video .badge-titulo {
+      background: linear-gradient(135deg, #fdedec, #f5b7b1);
+      color: #c0392b;
+    }
+    .section-video h1 {
+      color: #c0392b;
+    }
+    [data-theme="dark"] .section-video .badge-titulo {
+      background: rgba(231, 76, 60, 0.2);
+      color: #f1948a;
+    }
+    [data-theme="dark"] .section-video h1 {
+      color: #f1948a;
+    }
+
+    /* ===== VIDEO ===== */
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px var(--shadow-color);
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 14px;
     }
 
     /* ===== FOOTER ===== */
@@ -623,6 +668,10 @@
         border: 1px solid #ddd !important;
       }
 
+      .section-video {
+        display: none !important;
+      }
+
       footer {
         background: #2c3e50 !important;
         -webkit-print-color-adjust: exact;
@@ -644,6 +693,7 @@
         <a href="#programa"><i class="fas fa-graduation-cap"></i>Programa</a>
         <a href="#consecuencias"><i class="fas fa-exclamation-triangle"></i>Consecuencias</a>
         <a href="#dependencia"><i class="fas fa-link"></i>Dependencia</a>
+        <a href="#video"><i class="fas fa-video"></i>Video</a>
         <button class="btn-tema" onclick="toggleTema()" title="Cambiar tema">
           <i class="fas fa-moon" id="icono-tema"></i>
         </button>
@@ -661,7 +711,7 @@
     <div class="linea-decorativa"></div>
   </header>
 
-  <!-- ===== 1. SECCIÓN PROGRAMA ===== -->
+  <!-- ===== 1.  SECCIÓN PROGRAMA ===== -->
   <section class="section-programa" id="programa">
     <div class="seccion-header">
       <div class="seccion-icono">
@@ -683,7 +733,7 @@
         <p>
           La visualización permite identificar la representación de cada programa dentro del total de encuestados,
           lo cual resulta fundamental para comprender el contexto de las respuestas y evaluar si existe una
-          participación equilibrada entre los diferentes programas. 
+          participación equilibrada entre los diferentes programas.
         </p>
       </div>
 
@@ -716,7 +766,7 @@
           La mayoría de los participantes señaló como principal consecuencia negativa la
           <strong>distracción o pérdida de tiempo</strong>, seguida del
           <strong>cansancio visual</strong>, lo que evidencia el impacto del uso prolongado
-          de pantallas en la rutina diaria. 
+          de pantallas en la rutina diaria.
         </p>
         <p>
           Otras afectaciones mencionadas fueron los <strong>problemas para dormir</strong>,
@@ -775,6 +825,51 @@
 
     <p class="footer-nota">
       Nota: los valores corresponden al número de respuestas por categoría (n = 23). 
+    </p>
+  </section>
+
+  <!-- ===== 4. SECCIÓN VIDEO ===== -->
+  <section class="section-video" id="video">
+    <div class="seccion-header">
+      <div class="seccion-icono">
+        <i class="fas fa-video"></i>
+      </div>
+      <div class="badge-titulo">Material complementario</div>
+    </div>
+    <h1>Video Informativo</h1>
+
+    <div class="subtitulo">
+      Contenido audiovisual relacionado con el uso de la tecnología y la conectividad en el ámbito de la salud.
+    </div>
+
+    <div class="contenido">
+      <div class="texto">
+        <p>
+          Este video complementa los resultados de la encuesta, ofreciendo una perspectiva más amplia
+          sobre el impacto de la conectividad y el uso de dispositivos tecnológicos en nuestra vida diaria.
+        </p>
+        <p>
+          El contenido audiovisual permite comprender de manera más dinámica los conceptos relacionados
+          con la <strong>dependencia digital</strong>, las <strong>consecuencias del uso excesivo</strong>
+          de la tecnología y las estrategias para mantener un equilibrio saludable en nuestra relación
+          con los dispositivos electrónicos.
+        </p>
+      </div>
+
+      <div class="tarjeta-grafico">
+        <div class="video-container">
+          <iframe 
+            src="https://www.youtube.com/embed/lOoLmGcnBfU" 
+            title="Video sobre conectividad" 
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+    </div>
+
+    <p class="footer-nota">
+      Nota: Este video es material de apoyo para complementar el análisis de la encuesta. 
     </p>
   </section>
 
