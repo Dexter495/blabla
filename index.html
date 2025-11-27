@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -5,68 +6,282 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Resultados de la encuesta | Shayla Visbal</title>
   
-  <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome para iconos -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
   <style>
     :root {
-      --bg-primary: linear-gradient(135deg, #f5f0e1 0%, #e8e0cc 100%);
-      --bg-section: #fff;
-      --text-primary: #3d3425;
-      --text-secondary: #555;
-      --text-muted: #7a6f5d;
-      --border-color: #e0d7c7;
-      --shadow-color: rgba(0, 0, 0, 0.08);
-      --header-bg: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
-      --header-text: #fff;
-      --card-bg: linear-gradient(145deg, #fdfbf7 0%, #f5f0e6 100%);
-      --gold: #c9a227;
-      --gold-light: #e8d48b;
-    }
-
-    [data-theme="dark"] {
-      --bg-primary: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-      --bg-section: #1f1f3a;
+      --bg-section: rgba(31, 31, 58, 0.7);
       --text-primary: #e8e8e8;
       --text-secondary: #b8b8b8;
       --text-muted: #9a9a9a;
-      --border-color: #3a3a5a;
+      --border-color: rgba(255, 255, 255, 0.1);
       --shadow-color: rgba(0, 0, 0, 0.3);
       --header-bg: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
-      --header-text: #fff;
-      --card-bg: linear-gradient(145deg, #252542 0%, #1f1f3a 100%);
+      --card-bg: rgba(37, 37, 66, 0.6);
+      --gold: #c9a227;
+      --gold-light: #e8d48b;
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      cursor: none;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Lato', sans-serif;
-      background: var(--bg-primary);
       color: var(--text-primary);
       line-height: 1.8;
       min-height: 100vh;
-      transition: background 0.3s ease, color 0.3s ease;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ===== FONDO ANIMADO CON GRADIENTE ===== */
+    .fondo-animado {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      background: linear-gradient(-45deg, #1a1a2e, #16213e, #0f3460, #1a1a2e, #2c3e50, #1a1a2e);
+      background-size: 400% 400%;
+      animation: gradiente-animado 20s ease infinite;
+    }
+
+    @keyframes gradiente-animado {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ===== EFECTO PARALLAX ===== */
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120%;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* ===== ESTRELLAS ANIMADAS ===== */
+    .estrellas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .estrella {
+      position: absolute;
+      background: #fff;
+      border-radius: 50%;
+      animation: brillar 2s ease-in-out infinite;
+      will-change: transform, opacity, box-shadow;
+    }
+
+    .estrella:nth-child(1) { width: 3px; height: 3px; top: 10%; left: 15%; animation-delay: 0s; }
+    .estrella:nth-child(2) { width: 2px; height: 2px; top: 20%; left: 25%; animation-delay: 0.3s; }
+    .estrella:nth-child(3) { width: 4px; height: 4px; top: 15%; left: 40%; animation-delay: 0.6s; }
+    .estrella:nth-child(4) { width: 2px; height: 2px; top: 30%; left: 55%; animation-delay: 0.9s; }
+    .estrella:nth-child(5) { width: 3px; height: 3px; top: 25%; left: 70%; animation-delay: 1.2s; }
+    .estrella:nth-child(6) { width: 2px; height: 2px; top: 10%; left: 85%; animation-delay: 1.5s; }
+    .estrella:nth-child(7) { width: 4px; height: 4px; top: 35%; left: 10%; animation-delay: 0.2s; }
+    .estrella:nth-child(8) { width: 2px; height: 2px; top: 40%; left: 30%; animation-delay: 0.5s; }
+    .estrella:nth-child(9) { width: 3px; height: 3px; top: 45%; left: 50%; animation-delay: 0.8s; }
+    .estrella:nth-child(10) { width: 2px; height: 2px; top: 35%; left: 75%; animation-delay: 1.1s; }
+    .estrella:nth-child(11) { width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 1.4s; }
+    .estrella:nth-child(12) { width: 4px; height: 4px; top: 55%; left: 5%; animation-delay: 0.1s; }
+    .estrella:nth-child(13) { width: 2px; height: 2px; top: 60%; left: 20%; animation-delay: 0.4s; }
+    .estrella:nth-child(14) { width: 3px; height: 3px; top: 65%; left: 45%; animation-delay: 0.7s; }
+    .estrella:nth-child(15) { width: 2px; height: 2px; top: 70%; left: 65%; animation-delay: 1s; }
+    .estrella:nth-child(16) { width: 4px; height: 4px; top: 75%; left: 80%; animation-delay: 1.3s; }
+    .estrella:nth-child(17) { width: 2px; height: 2px; top: 80%; left: 35%; animation-delay: 0.15s; }
+    .estrella:nth-child(18) { width: 3px; height: 3px; top: 85%; left: 60%; animation-delay: 0.45s; }
+    .estrella:nth-child(19) { width: 2px; height: 2px; top: 90%; left: 15%; animation-delay: 0.75s; }
+    .estrella:nth-child(20) { width: 4px; height: 4px; top: 95%; left: 95%; animation-delay: 1.05s; }
+
+    @keyframes brillar {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+        box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(201, 162, 39, 0.5);
+      }
+    }
+
+    /* ===== EFECTO AL SELECCIONAR TEXTO ===== */
+    ::selection {
+      background: var(--gold);
+      color: #1a1a2e;
+      text-shadow: none;
+    }
+
+    ::-moz-selection {
+      background: var(--gold);
+      color: #1a1a2e;
+      text-shadow: none;
+    }
+
+    .texto-seleccionado {
+      animation: seleccion-brillo 0.3s ease;
+    }
+
+    @keyframes seleccion-brillo {
+      0% { background: rgba(201, 162, 39, 0.5); }
+      100% { background: transparent; }
+    }
+
+    /* ===== CURSOR PERSONALIZADO ===== */
+    .cursor {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--gold);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      transition: transform 0.15s ease, background 0.15s ease;
+      transform: translate(-50%, -50%);
+      will-change: left, top, transform;
+    }
+
+    .cursor-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      position: fixed;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      will-change: left, top;
+    }
+
+    .cursor.hover {
+      transform: translate(-50%, -50%) scale(1.5);
+      background: rgba(201, 162, 39, 0.2);
+    }
+
+    /* ===== PRELOADER ===== */
+    .preloader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 100000;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .preloader.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .preloader-logo {
+      width: 120px;
+      height: 120px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px;
+      animation: pulse-loader 1.5s infinite ease-in-out;
+      box-shadow: 0 0 40px rgba(201, 162, 39, 0.3);
+    }
+
+    .preloader-logo img {
+      width: 85%;
+      height: 85%;
+      object-fit: contain;
+    }
+
+    @keyframes pulse-loader {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(201, 162, 39, 0.3); }
+      50% { transform: scale(1.05); box-shadow: 0 0 60px rgba(201, 162, 39, 0.5); }
+    }
+
+    .preloader-text {
+      margin-top: 30px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--gold-light);
+      letter-spacing: 0.2em;
+    }
+
+    .preloader-bar {
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 2px;
+      margin-top: 20px;
+      overflow: hidden;
+    }
+
+    .preloader-bar-inner {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      animation: loading-bar 2s ease-in-out forwards;
+    }
+
+    @keyframes loading-bar {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    /* ===== BARRA DE PROGRESO ===== */
+    .barra-progreso {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 0%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      z-index: 9999;
+      transition: width 0.1s ease;
     }
 
     /* ===== NAVEGACIÓN ===== */
-
     nav {
-      background: rgba(44, 62, 80, 0.95);
-      backdrop-filter: blur(10px);
+      background: rgba(15, 15, 35, 0.8);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--glass-border);
       padding: 15px 30px;
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 20px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.4);
     }
 
     nav .nav-contenido {
@@ -86,29 +301,34 @@
       font-family: 'Playfair Display', serif;
       font-size: 1.1rem;
       font-weight: 700;
+      transition: transform 0.3s ease;
+    }
+
+    nav .nav-logo:hover {
+      transform: scale(1.05);
     }
 
     nav .nav-logo img {
       height: 40px;
       width: auto;
       border-radius: 6px;
-      background: transparent;
-      padding: 0;
     }
 
     nav .nav-links {
       display: flex;
       gap: 8px;
       align-items: center;
+      flex-wrap: wrap;
     }
 
     nav .nav-links a {
       color: rgba(255,255,255,0.85);
       text-decoration: none;
-      padding: 8px 16px;
+      padding: 8px 14px;
       border-radius: 8px;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       transition: all 0.3s ease;
+      position: relative;
     }
 
     nav .nav-links a:hover {
@@ -117,34 +337,87 @@
     }
 
     nav .nav-links a i {
-      margin-right: 6px;
+      margin-right: 5px;
     }
 
-    .btn-tema {
-      background: rgba(255,255,255,0.1);
-      border: 1px solid rgba(255,255,255,0.2);
+    nav .nav-links a::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: -40px;
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(0, 0, 0, 0.9);
       color: #fff;
-      padding: 8px 14px;
+      padding: 8px 12px;
       border-radius: 8px;
-      cursor: pointer;
-      font-size: 1rem;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
       transition: all 0.3s ease;
-      margin-left: 10px;
+      z-index: 1000;
+      border: 1px solid var(--gold);
     }
 
-    .btn-tema:hover {
-      background: rgba(255,255,255,0.2);
+    nav .nav-links a:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
     }
 
     /* ===== HEADER ===== */
-
     header {
       background: var(--header-bg);
-      color: var(--header-text);
-      padding: 70px 30px;
+      color: #fff;
+      padding: 80px 30px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      min-height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .particulas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .particula {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: rgba(201, 162, 39, 0.3);
+      border-radius: 50%;
+      animation: flotar 15s infinite ease-in-out;
+      will-change: transform, opacity;
+    }
+
+    .particula:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; animation-duration: 12s; }
+    .particula:nth-child(2) { left: 20%; top: 80%; animation-delay: 2s; animation-duration: 14s; }
+    .particula:nth-child(3) { left: 30%; top: 40%; animation-delay: 4s; animation-duration: 16s; }
+    .particula:nth-child(4) { left: 40%; top: 60%; animation-delay: 1s; animation-duration: 13s; }
+    .particula:nth-child(5) { left: 50%; top: 30%; animation-delay: 3s; animation-duration: 15s; }
+    .particula:nth-child(6) { left: 60%; top: 70%; animation-delay: 5s; animation-duration: 11s; }
+    .particula:nth-child(7) { left: 70%; top: 50%; animation-delay: 2s; animation-duration: 17s; }
+    .particula:nth-child(8) { left: 80%; top: 20%; animation-delay: 4s; animation-duration: 12s; }
+    .particula:nth-child(9) { left: 90%; top: 90%; animation-delay: 1s; animation-duration: 14s; }
+    .particula:nth-child(10) { left: 15%; top: 55%; animation-delay: 3s; animation-duration: 16s; }
+    .particula:nth-child(11) { left: 85%; top: 45%; animation-delay: 0s; animation-duration: 13s; }
+    .particula:nth-child(12) { left: 45%; top: 85%; animation-delay: 2s; animation-duration: 15s; }
+
+    @keyframes flotar {
+      0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0.3; }
+      25% { transform: translateY(-30px) translateX(10px) scale(1.2); opacity: 0.6; }
+      50% { transform: translateY(-20px) translateX(-10px) scale(0.8); opacity: 0.4; }
+      75% { transform: translateY(-40px) translateX(5px) scale(1.1); opacity: 0.5; }
     }
 
     header::before {
@@ -154,7 +427,7 @@
       left: -50%;
       width: 200%;
       height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
       animation: pulse 15s infinite;
     }
 
@@ -174,18 +447,29 @@
       margin: 0 auto 20px;
       position: relative;
       z-index: 1;
-      box-shadow: 0 8px 22px rgba(0,0,0,0.2);
+      box-shadow: 0 8px 22px rgba(0,0,0,0.4);
       padding: 6px;
+      animation: aparecer 1s ease forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    header .header-logo:hover {
+      transform: scale(1.1) rotate(5deg);
+      box-shadow: 0 15px 40px rgba(201, 162, 39, 0.4);
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     header .header-logo img {
       width: 88%;
       height: 88%;
       object-fit: contain;
-      border-radius: 0;
       display: block;
-      background: transparent;
       filter: contrast(1.05);
+      will-change: transform;
     }
 
     header h1 {
@@ -195,16 +479,28 @@
       margin-bottom: 15px;
       position: relative;
       z-index: 1;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+      min-height: 4rem;
+    }
+
+    .typing-text {
+      border-right: 3px solid var(--gold);
+      animation: blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--gold); }
     }
 
     header p {
       font-size: 1.15rem;
-      opacity: 0.9;
+      opacity: 0;
       max-width: 650px;
       margin: 0 auto;
       position: relative;
       z-index: 1;
+      animation: aparecer 1s ease 2.5s forwards;
     }
 
     header .linea-decorativa {
@@ -213,43 +509,83 @@
       background: linear-gradient(90deg, var(--gold), var(--gold-light));
       margin: 25px auto 0;
       border-radius: 2px;
+      opacity: 0;
+      animation: aparecer 1s ease 2.8s forwards;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      opacity: 0;
+      animation: bounce 2s infinite, aparecer 1s ease 3s forwards;
+    }
+
+    .scroll-indicator i {
+      font-size: 2rem;
+      color: var(--gold-light);
+      opacity: 0.7;
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+      40% { transform: translateX(-50%) translateY(-15px); }
+      60% { transform: translateX(-50%) translateY(-7px); }
+    }
+
+    /* ===== CONFETTI ===== */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -10px;
+      z-index: 100001;
+      animation: confetti-fall 3s linear forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes confetti-fall {
+      0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
     }
 
     /* ===== SECCIONES ===== */
-
     section {
       max-width: 1100px;
       margin: 50px auto;
       padding: 45px 55px 50px;
       background: var(--bg-section);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       border-radius: 16px;
+      border: 1px solid var(--glass-border);
       box-shadow: 0 15px 40px var(--shadow-color);
       position: relative;
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-      animation: fadeInUp 0.6s ease forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       opacity: 0;
+      transform: translateY(50px);
     }
 
-    section:nth-child(2) { animation-delay: 0.1s; }
-    section:nth-child(3) { animation-delay: 0.2s; }
-    section:nth-child(4) { animation-delay: 0.3s; }
-    section:nth-child(5) { animation-delay: 0.4s; }
+    section.visible {
+      animation: fadeInUp 0.6s ease forwards;
+    }
 
     @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     section:hover {
       transform: translateY(-5px);
-      box-shadow: 0 20px 50px var(--shadow-color);
+      box-shadow: 0 25px 60px var(--shadow-color);
+      border-color: rgba(201, 162, 39, 0.2);
+    }
+
+    section.visible:hover {
+      transform: translateY(-5px);
     }
 
     section::before {
@@ -278,6 +614,11 @@
       justify-content: center;
       font-size: 1.4rem;
       color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .seccion-icono:hover {
+      transform: rotate(10deg) scale(1.1);
     }
 
     .badge-titulo {
@@ -306,7 +647,7 @@
       border-bottom: 1px dashed var(--border-color);
     }
 
-      .contenido {
+    .contenido {
       display: flex;
       gap: 45px;
       align-items: center;
@@ -329,26 +670,31 @@
       color: var(--text-primary);
     }
 
-      .tarjeta-grafico {
+    .tarjeta-grafico {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
       padding: 25px;
       background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
       border-radius: 14px;
-      border: 1px solid var(--border-color);
+      border: 1px solid var(--glass-border);
       box-shadow: 0 8px 25px var(--shadow-color);
-      transition: box-shadow 0.3s ease, background 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .tarjeta-grafico:hover {
-      box-shadow: 0 12px 35px var(--shadow-color);
+      box-shadow: 0 15px 40px var(--shadow-color);
+      border-color: rgba(201, 162, 39, 0.3);
+      transform: translateY(-3px);
     }
 
     .tarjeta-grafico canvas {
-      width: 420px !important;
-      height: 260px !important;
+      width: 100%;
+      max-width: 420px;
+      height: auto;
     }
 
     .footer-nota {
@@ -360,95 +706,210 @@
       border-left: 3px solid var(--border-color);
     }
 
+    /* ===== ESTADÍSTICAS ===== */
+    .estadisticas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-radius: 14px;
+      padding: 25px;
+      text-align: center;
+      border: 1px solid var(--glass-border);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+      transition: left 0.5s ease;
+    }
+
+    .stat-card:hover::before {
+      left: 100%;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px var(--shadow-color);
+      border-color: rgba(201, 162, 39, 0.3);
+    }
+
+    .stat-card .stat-icono {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      font-size: 1.5rem;
+      color: #fff;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover .stat-icono {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    .stat-card .stat-numero {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      margin-bottom: 5px;
+      line-height: 1;
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .stat-card.gold .stat-icono { background: linear-gradient(135deg, #c9a227, #e8d48b); }
+    .stat-card.gold .stat-numero { color: #e8d48b; }
+    .stat-card.blue .stat-icono { background: linear-gradient(135deg, #2980b9, #85c1e9); }
+    .stat-card.blue .stat-numero { color: #85c1e9; }
+    .stat-card.purple .stat-icono { background: linear-gradient(135deg, #8e44ad, #c39bd3); }
+    .stat-card.purple .stat-numero { color: #c39bd3; }
+    .stat-card.red .stat-icono { background: linear-gradient(135deg, #e74c3c, #f1948a); }
+    .stat-card.red .stat-numero { color: #f1948a; }
+
+    /* ===== TOOLTIPS ===== */
+    [data-info] {
+      position: relative;
+    }
+
+    [data-info]::after {
+      content: attr(data-info);
+      position: absolute;
+      bottom: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%) translateY(10px);
+      background: rgba(0, 0, 0, 0.95);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 1000;
+      border: 1px solid var(--gold);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      max-width: 250px;
+      white-space: normal;
+      text-align: center;
+    }
+
+    [data-info]:hover::after {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(0);
+    }
+
+    /* ===== CONCLUSIONES ===== */
+    .conclusiones-lista {
+      list-style: none;
+      margin-top: 25px;
+    }
+
+    .conclusiones-lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 20px;
+      background: var(--card-bg);
+      backdrop-filter: blur(15px);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      border: 1px solid var(--glass-border);
+      border-left: 4px solid var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .conclusiones-lista li:hover {
+      transform: translateX(10px);
+      box-shadow: 0 10px 30px var(--shadow-color);
+    }
+
+    .conclusiones-lista li i {
+      color: var(--gold-light);
+      font-size: 1.3rem;
+      margin-top: 3px;
+      transition: transform 0.3s ease;
+    }
+
+    .conclusiones-lista li:hover i {
+      transform: scale(1.2);
+    }
+
+    .conclusiones-lista li .conclusion-texto {
+      flex: 1;
+    }
+
+    .conclusiones-lista li .conclusion-texto strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--text-primary);
+      font-size: 1.05rem;
+    }
+
+    .conclusiones-lista li .conclusion-texto span {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+
     /* ===== COLORES POR SECCIÓN ===== */
+    .section-introduccion::before { background: linear-gradient(90deg, #27ae60, #58d68d); }
+    .section-introduccion .seccion-icono { background: linear-gradient(135deg, #27ae60, #58d68d); }
+    .section-introduccion .badge-titulo { background: rgba(39, 174, 96, 0.2); color: #58d68d; }
+    .section-introduccion h1 { color: #58d68d; }
 
-    .section-programa::before {
-      background: linear-gradient(90deg, #c9a227, #e8d48b);
-    }
-    .section-programa .seccion-icono {
-      background: linear-gradient(135deg, #c9a227, #e8d48b);
-    }
-    .section-programa .badge-titulo {
-      background: linear-gradient(135deg, #fdf6e3, #f5ecd3);
-      color: #9a7b2a;
-    }
-    .section-programa h1 {
-      color: #9a7b2a;
-    }
-    [data-theme="dark"] .section-programa .badge-titulo {
-      background: rgba(201, 162, 39, 0.2);
-      color: #e8d48b;
-    }
-    [data-theme="dark"] .section-programa h1 {
-      color: #e8d48b;
-    }
+    .section-consecuencias::before { background: linear-gradient(90deg, #8e44ad, #c39bd3); }
+    .section-consecuencias .seccion-icono { background: linear-gradient(135deg, #8e44ad, #c39bd3); }
+    .section-consecuencias .badge-titulo { background: rgba(142, 68, 173, 0.2); color: #c39bd3; }
+    .section-consecuencias h1 { color: #c39bd3; }
 
-    .section-consecuencias::before {
-      background: linear-gradient(90deg, #8e44ad, #c39bd3);
-    }
-    .section-consecuencias .seccion-icono {
-      background: linear-gradient(135deg, #8e44ad, #c39bd3);
-    }
-    .section-consecuencias .badge-titulo {
-      background: linear-gradient(135deg, #f5eef8, #ebdef0);
-      color: #7d3c98;
-    }
-    .section-consecuencias h1 {
-      color: #7d3c98;
-    }
-    [data-theme="dark"] .section-consecuencias .badge-titulo {
-      background: rgba(142, 68, 173, 0.2);
-      color: #c39bd3;
-    }
-    [data-theme="dark"] .section-consecuencias h1 {
-      color: #c39bd3;
-    }
+    .section-dependencia::before { background: linear-gradient(90deg, #2980b9, #85c1e9); }
+    .section-dependencia .seccion-icono { background: linear-gradient(135deg, #2980b9, #85c1e9); }
+    .section-dependencia .badge-titulo { background: rgba(41, 128, 185, 0.2); color: #85c1e9; }
+    .section-dependencia h1 { color: #85c1e9; }
 
-    .section-dependencia::before {
-      background: linear-gradient(90deg, #2980b9, #85c1e9);
-    }
-    .section-dependencia .seccion-icono {
-      background: linear-gradient(135deg, #2980b9, #85c1e9);
-    }
-    .section-dependencia .badge-titulo {
-      background: linear-gradient(135deg, #eaf2f8, #d4e6f1);
-      color: #2471a3;
-    }
-    .section-dependencia h1 {
-      color: #2471a3;
-    }
-    [data-theme="dark"] .section-dependencia .badge-titulo {
-      background: rgba(41, 128, 185, 0.2);
-      color: #85c1e9;
-    }
-    [data-theme="dark"] .section-dependencia h1 {
-      color: #85c1e9;
-    }
+    .section-video::before { background: linear-gradient(90deg, #e74c3c, #f1948a); }
+    .section-video .seccion-icono { background: linear-gradient(135deg, #e74c3c, #f1948a); }
+    .section-video .badge-titulo { background: rgba(231, 76, 60, 0.2); color: #f1948a; }
+    .section-video h1 { color: #f1948a; }
 
-    /* Video - Rojo */
-    .section-video::before {
-      background: linear-gradient(90deg, #e74c3c, #f1948a);
-    }
-    .section-video .seccion-icono {
-      background: linear-gradient(135deg, #e74c3c, #f1948a);
-    }
-    .section-video .badge-titulo {
-      background: linear-gradient(135deg, #fdedec, #f5b7b1);
-      color: #c0392b;
-    }
-    .section-video h1 {
-      color: #c0392b;
-    }
-    [data-theme="dark"] .section-video .badge-titulo {
-      background: rgba(231, 76, 60, 0.2);
-      color: #f1948a;
-    }
-    [data-theme="dark"] .section-video h1 {
-      color: #f1948a;
-    }
+    .section-conclusiones::before { background: linear-gradient(90deg, #00bcd4, #80deea); }
+    .section-conclusiones .seccion-icono { background: linear-gradient(135deg, #00bcd4, #80deea); }
+    .section-conclusiones .badge-titulo { background: rgba(0, 188, 212, 0.2); color: #80deea; }
+    .section-conclusiones h1 { color: #80deea; }
+
+    /* ===== SECCIÓN CANVA (NARANJA) ===== */
+    .section-canva::before { background: linear-gradient(90deg, #f39c12, #f7dc6f); }
+    .section-canva .seccion-icono { background: linear-gradient(135deg, #f39c12, #f7dc6f); }
+    .section-canva .badge-titulo { background: rgba(243,156,18,0.2); color: #f7dc6f; }
+    .section-canva h1 { color: #f7dc6f; }
+    .canva-container { width: 100%; max-width: 900px; margin: 0 auto; }
+    .btn-canva { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--gold), var(--gold-light)); color: #1a1a2e; font-weight: 700; padding: 12px 18px; border-radius: 10px; text-decoration: none; box-shadow: 0 6px 18px rgba(201,162,39,0.35); transition: transform 0.2s ease, box-shadow 0.2s ease; }
+    .btn-canva:hover { transform: translateY(-3px); box-shadow: 0 10px 28px rgba(201,162,39,0.5); }
 
     /* ===== VIDEO ===== */
-
     .video-container {
       position: relative;
       width: 100%;
@@ -469,8 +930,45 @@
       border-radius: 14px;
     }
 
-    /* ===== FOOTER ===== */
+    /* ===== BOTÓN VOLVER ARRIBA ===== */
+    .btn-arriba {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border: none;
+      border-radius: 50%;
+      cursor: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 5px 20px rgba(201, 162, 39, 0.4);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      transform: translateY(20px);
+    }
 
+    .btn-arriba.visible {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .btn-arriba:hover {
+      transform: translateY(-5px) scale(1.1);
+      box-shadow: 0 10px 30px rgba(201, 162, 39, 0.6);
+    }
+
+    .btn-arriba i {
+      font-size: 1.3rem;
+      color: #1a1a2e;
+    }
+
+    /* ===== FOOTER ===== */
     footer {
       background: var(--header-bg);
       color: #ecf0f1;
@@ -511,9 +1009,12 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: transparent;
-      padding: 0;
       object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+
+    .footer-info-principal img:hover {
+      transform: rotate(10deg) scale(1.1);
     }
 
     .footer-info-principal .footer-texto strong {
@@ -532,10 +1033,11 @@
 
     .footer-detalle {
       text-align: right;
-      background: rgba(255,255,255,0.05);
+      background: var(--glass-bg);
+      backdrop-filter: blur(15px);
       padding: 20px 25px;
       border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.1);
+      border: 1px solid var(--glass-border);
     }
 
     .footer-detalle span {
@@ -560,129 +1062,99 @@
     }
 
     /* ===== RESPONSIVO ===== */
-
     @media (max-width: 900px) {
-      nav .nav-contenido {
-        flex-direction: column;
-        gap: 15px;
-      }
+      .cursor, .cursor-dot { display: none; }
+      * { cursor: auto; }
 
-      nav .nav-links {
-        flex-wrap: wrap;
-        justify-content: center;
-      }
+      nav .nav-contenido { flex-direction: column; gap: 15px; }
+      nav .nav-links { justify-content: center; }
+      nav .nav-links a::after { display: none; }
 
-      header {
-        padding: 50px 20px;
-      }
+      header { padding: 60px 20px; min-height: 60vh; }
+      header h1 { font-size: 2rem; }
+      header .header-logo { width: 110px; height: 110px; }
 
-      header h1 {
-        font-size: 2.2rem;
-      }
+      section { margin: 30px 15px; padding: 30px 25px 35px; }
+      .seccion-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+      .contenido { flex-direction: column; gap: 30px; }
+      section h1 { font-size: 1.8rem; }
+      .tarjeta-grafico { width: 100%; }
 
-      header .header-logo {
-        width: 110px;
-        height: 110px;
-      }
+      .estadisticas-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+      .stat-card { padding: 20px 15px; }
+      .stat-card .stat-numero { font-size: 2.2rem; }
 
-      section {
-        margin: 30px 15px;
-        padding: 30px 25px 35px;
-      }
+      .footer-contenido { flex-direction: column; text-align: center; gap: 25px; }
+      .footer-info-principal { flex-direction: column; text-align: center; }
+      .footer-detalle { text-align: center; width: 100%; }
 
-      .seccion-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 10px;
-      }
-
-      .contenido {
-        flex-direction: column;
-        gap: 30px;
-      }
-
-      section h1 {
-        font-size: 1.9rem;
-      }
-
-      .tarjeta-grafico {
-        width: 100%;
-      }
-
-      .tarjeta-grafico canvas {
-        width: 100% !important;
-        height: auto !important;
-      }
-
-      .footer-contenido {
-        flex-direction: column;
-        text-align: center;
-        gap: 25px;
-      }
-
-      .footer-info-principal {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      .footer-detalle {
-        text-align: center;
-        width: 100%;
-      }
+      .btn-arriba { bottom: 20px; right: 20px; width: 45px; height: 45px; }
+      [data-info]::after { display: none; }
     }
 
-    /* ===== ESTILOS PARA IMPRIMIR ===== */
-
+    /* ===== IMPRIMIR ===== */
     @media print {
-      nav, .btn-tema {
-        display: none !important;
-      }
-
-      body {
-        background: #fff !important;
-        color: #000 !important;
-      }
-
-      header {
-        background: #2c3e50 !important;
-        padding: 30px 20px !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
-
-      section {
-        break-inside: avoid;
-        page-break-inside: avoid;
-        margin: 20px auto !important;
-        padding: 25px 30px !important;
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
-      }
-
-      section:hover {
-        transform: none !important;
-      }
-
-      .tarjeta-grafico {
-        box-shadow: none !important;
-        border: 1px solid #ddd !important;
-      }
-
-      .section-video {
-        display: none !important;
-      }
-
-      footer {
-        background: #2c3e50 !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-      }
+      .cursor, .cursor-dot, nav, .btn-arriba, .scroll-indicator, .particulas, .barra-progreso, .preloader, .fondo-animado, .estrellas-container { display: none !important; }
+      * { cursor: auto; }
+      body { background: #fff !important; color: #000 !important; }
+      section { background: #fff !important; backdrop-filter: none !important; border: 1px solid #ddd !important; box-shadow: none !important; opacity: 1 !important; transform: none !important; }
+      .section-video { display: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .fondo-animado, .particula, .estrella, .confetti, .scroll-indicator { animation: none !important; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ===== NAVEGACIÓN ===== -->
+  <!-- FONDO ANIMADO -->
+  <div class="fondo-animado"></div>
+
+  <!-- PARALLAX BG -->
+  <div class="parallax-bg" id="parallaxBg">
+    <div class="estrellas-container">
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+      <div class="estrella"></div>
+    </div>
+  </div>
+
+  <!-- PRELOADER -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-logo">
+      <img src="https://colombiaestudia.com/wp-content/uploads/2021/06/Logo_UNIMETRO.jpg" alt="Logo">
+    </div>
+    <div class="preloader-text">Cargando...</div>
+    <div class="preloader-bar">
+      <div class="preloader-bar-inner"></div>
+    </div>
+  </div>
+
+  <!-- CURSOR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-dot" id="cursorDot"></div>
+
+  <!-- BARRA DE PROGRESO -->
+  <div class="barra-progreso" id="barraProgreso"></div>
+
+  <!-- NAVEGACIÓN -->
   <nav>
     <div class="nav-contenido">
       <a href="#" class="nav-logo">
@@ -690,194 +1162,240 @@
         <span>Unimetro</span>
       </a>
       <div class="nav-links">
-        <a href="#programa"><i class="fas fa-graduation-cap"></i>Programa</a>
-        <a href="#consecuencias"><i class="fas fa-exclamation-triangle"></i>Consecuencias</a>
-        <a href="#dependencia"><i class="fas fa-link"></i>Dependencia</a>
-        <a href="#video"><i class="fas fa-video"></i>Video</a>
-        <button class="btn-tema" onclick="toggleTema()" title="Cambiar tema">
-          <i class="fas fa-moon" id="icono-tema"></i>
-        </button>
+        <a href="#introduccion" data-tooltip="Conoce el contexto del estudio"><i class="fa-solid fa-book-open"></i>Introducción</a>
+        <a href="#consecuencias" data-tooltip="Efectos negativos reportados"><i class="fa-solid fa-triangle-exclamation"></i>Consecuencias</a>
+        <a href="#dependencia" data-tooltip="Percepción de adicción"><i class="fa-solid fa-link"></i>Dependencia</a>
+        <a href="#video" data-tooltip="Material audiovisual"><i class="fa-solid fa-video"></i>Video</a>
+        <a href="#canva" data-tooltip="Presentación visual"><i class="fa-solid fa-presentation-screen"></i>Canva</a>
+        <a href="#conclusiones" data-tooltip="Hallazgos principales"><i class="fa-solid fa-check-circle"></i>Conclusiones</a>
       </div>
     </div>
   </nav>
 
-  <!-- ===== HEADER ===== -->
+  <!-- HEADER -->
   <header>
-    <div class="header-logo">
+    <div class="particulas">
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+      <div class="particula"></div>
+    </div>
+
+    <div class="header-logo" id="headerLogo" data-info="¡Haz clic para una sorpresa!">
       <img src="https://colombiaestudia.com/wp-content/uploads/2021/06/Logo_UNIMETRO.jpg" alt="Logo Universidad Metropolitana">
     </div>
-    <h1>Encuesta sobre Conectividad</h1>
+    <h1><span class="typing-text" id="typingText"></span></h1>
     <p>Análisis de los hábitos digitales y sus efectos en estudiantes universitarios del área de la salud. </p>
     <div class="linea-decorativa"></div>
+
+    <div class="scroll-indicator">
+      <i class="fa-solid fa-chevron-down"></i>
+    </div>
   </header>
 
-  <!-- ===== 1.  SECCIÓN PROGRAMA ===== -->
-  <section class="section-programa" id="programa">
+  <!-- SECCIÓN INTRODUCCIÓN -->
+  <section class="section-introduccion" id="introduccion">
     <div class="seccion-header">
-      <div class="seccion-icono">
-        <i class="fas fa-graduation-cap"></i>
+      <div class="seccion-icono" data-info="Sección de presentación">
+        <i class="fa-solid fa-book-open"></i>
       </div>
-      <div class="badge-titulo">Resultados de la encuesta</div>
+      <div class="badge-titulo">Presentación del estudio</div>
     </div>
-    <h1>Programa Académico</h1>
-    <div class="subtitulo">
-      Distribución de los participantes según el programa académico al que pertenecen (8 respuestas). 
-    </div>
+    <h1>Introducción</h1>
+    <div class="subtitulo">Contexto y objetivos del estudio sobre conectividad y hábitos digitales. </div>
 
-    <div class="contenido">
-      <div class="texto">
-        <p>
-          En esta gráfica se puede observar la distribución de los participantes que respondieron la encuesta
-          según el programa académico al que pertenecen. 
-        </p>
-        <p>
-          La visualización permite identificar la representación de cada programa dentro del total de encuestados,
-          lo cual resulta fundamental para comprender el contexto de las respuestas y evaluar si existe una
-          participación equilibrada entre los diferentes programas.
-        </p>
-      </div>
-
-      <div class="tarjeta-grafico">
-        <canvas id="graficoProgramas"></canvas>
-      </div>
+    <div class="texto">
+      <p>El presente estudio tiene como objetivo analizar los <strong>hábitos digitales</strong> y el uso de la <strong>conectividad</strong> en estudiantes universitarios del área de la salud de la Universidad Metropolitana de Barranquilla. </p>
+      <p>En la actualidad, el uso de dispositivos electrónicos y la conexión constante a internet se han convertido en parte fundamental de la vida cotidiana. Sin embargo, este uso excesivo puede generar consecuencias negativas tanto físicas como psicológicas, afectando el bienestar y el rendimiento académico de los estudiantes.</p>
+      <p>A través de una encuesta aplicada a estudiantes de diferentes programas académicos del área de la salud, se busca identificar los principales <strong>efectos negativos</strong> percibidos, así como el nivel de <strong>conciencia</strong> sobre la posible dependencia que puede generar la conectividad. </p>
     </div>
 
-    <p class="footer-nota">
-      Nota: los porcentajes se calculan sobre un total de 8 respuestas. 
-    </p>
+    <div class="estadisticas-grid">
+      <div class="stat-card gold" data-info="Total de estudiantes que participaron">
+        <div class="stat-icono"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-numero" data-target="23">0</div>
+        <div class="stat-label">Encuestados</div>
+      </div>
+      <div class="stat-card blue" data-info="Programas académicos representados">
+        <div class="stat-icono"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="stat-numero" data-target="8">0</div>
+        <div class="stat-label">Programas</div>
+      </div>
+      <div class="stat-card purple" data-info="Preguntas del cuestionario">
+        <div class="stat-icono"><i class="fa-solid fa-clipboard-question"></i></div>
+        <div class="stat-numero" data-target="5">0</div>
+        <div class="stat-label">Preguntas</div>
+      </div>
+      <div class="stat-card red" data-info="Año de realización">
+        <div class="stat-icono"><i class="fa-solid fa-calendar"></i></div>
+        <div class="stat-numero" data-target="2025">0</div>
+        <div class="stat-label">Año</div>
+      </div>
+    </div>
+
+    <p class="footer-nota">Nota: Este estudio fue realizado como parte de la asignatura TIC en Nutrición. </p>
   </section>
 
-  <!-- ===== 2. SECCIÓN CONSECUENCIAS NEGATIVAS ===== -->
+  <!-- SECCIÓN CONSECUENCIAS -->
   <section class="section-consecuencias" id="consecuencias">
     <div class="seccion-header">
-      <div class="seccion-icono">
-        <i class="fas fa-exclamation-triangle"></i>
+      <div class="seccion-icono" data-info="Efectos negativos identificados">
+        <i class="fa-solid fa-triangle-exclamation"></i>
       </div>
       <div class="badge-titulo">Resultados de la encuesta</div>
     </div>
     <h1>Consecuencias Negativas de la Conectividad</h1>
-    <div class="subtitulo">
-      Distribución de las consecuencias reportadas por los participantes (23 respuestas).
-    </div>
+    <div class="subtitulo">Distribución de las consecuencias reportadas por los participantes (23 respuestas).</div>
 
     <div class="contenido">
       <div class="texto">
-        <p>
-          La mayoría de los participantes señaló como principal consecuencia negativa la
-          <strong>distracción o pérdida de tiempo</strong>, seguida del
-          <strong>cansancio visual</strong>, lo que evidencia el impacto del uso prolongado
-          de pantallas en la rutina diaria.
-        </p>
-        <p>
-          Otras afectaciones mencionadas fueron los <strong>problemas para dormir</strong>,
-          el <strong>aislamiento social</strong> y, en menor medida, el
-          <strong>estrés o la ansiedad</strong>. Estos resultados permiten identificar
-          riesgos asociados al uso excesivo de la conectividad y resaltan la importancia
-          de promover hábitos digitales más saludables.
-        </p>
+        <p>La mayoría de los participantes señaló como principal consecuencia negativa la <strong data-info="56.5% de los encuestados">distracción o pérdida de tiempo (56.5%)</strong>, seguida del <strong data-info="43.5% de los encuestados">cansancio visual (43.5%)</strong>, lo que evidencia el impacto del uso prolongado de pantallas en la rutina diaria.</p>
+        <p>Otras afectaciones mencionadas fueron los <strong data-info="21.7% de los encuestados">problemas para dormir (21.7%)</strong>, el <strong data-info="13% de los encuestados">aislamiento social (13%)</strong> y, en menor medida, el <strong data-info="4.3% de los encuestados">estrés o la ansiedad (4.3%)</strong>. Estos resultados permiten identificar riesgos asociados al uso excesivo de la conectividad.</p>
       </div>
-
-      <div class="tarjeta-grafico">
+      <div class="tarjeta-grafico" data-info="Gráfico de barras horizontales">
         <canvas id="graficoConsecuencias"></canvas>
       </div>
     </div>
 
-    <p class="footer-nota">
-      Nota: los valores corresponden al número de respuestas por cada tipo de consecuencia (n = 23).
-    </p>
+    <p class="footer-nota">Nota: los valores corresponden al número de respuestas por cada tipo de consecuencia (n = 23).</p>
   </section>
 
-  <!-- ===== 3. SECCIÓN DEPENDENCIA / ADICCIÓN ===== -->
+  <!-- SECCIÓN DEPENDENCIA -->
   <section class="section-dependencia" id="dependencia">
     <div class="seccion-header">
-      <div class="seccion-icono">
-        <i class="fas fa-link"></i>
+      <div class="seccion-icono" data-info="Percepción sobre adicción digital">
+        <i class="fa-solid fa-link"></i>
       </div>
       <div class="badge-titulo">Resultados de la encuesta</div>
     </div>
     <h1>Percepción de Dependencia Digital</h1>
-
-    <div class="subtitulo">
-      Opinión de los participantes frente a la afirmación:
-      <strong>"La conectividad puede generar dependencia o adicción". </strong>
-    </div>
+    <div class="subtitulo">Opinión de los participantes frente a la afirmación: <strong>"La conectividad puede generar dependencia o adicción". </strong></div>
 
     <div class="contenido">
       <div class="texto">
-        <p>
-          La gran mayoría de los participantes manifestó estar
-          <strong>de acuerdo</strong> con la idea de que la conectividad puede
-          generar dependencia o adicción, lo que refleja una percepción clara
-          del riesgo asociado al uso intensivo de dispositivos y redes.
-        </p>
-        <p>
-          Solo una proporción muy pequeña indicó estar
-          <strong>en desacuerdo</strong> o <strong>totalmente en desacuerdo</strong>,
-          lo cual sugiere que, en general, existe una alta sensibilización frente
-          a los posibles efectos adictivos de la conectividad constante.
-        </p>
+        <p>La gran mayoría de los participantes manifestó estar <strong data-info="87% de los encuestados">de acuerdo (87%)</strong> con la idea de que la conectividad puede generar dependencia o adicción, lo que refleja una percepción clara del riesgo asociado al uso intensivo de dispositivos y redes.</p>
+        <p>Solo una proporción muy pequeña indicó estar <strong data-info="8.7% de los encuestados">en desacuerdo (8.7%)</strong> o <strong data-info="4.3% de los encuestados">totalmente en desacuerdo (4.3%)</strong>, lo cual sugiere que existe una alta sensibilización frente a los posibles efectos adictivos de la conectividad constante.</p>
       </div>
-
-      <div class="tarjeta-grafico">
+      <div class="tarjeta-grafico" data-info="Gráfico circular de opiniones">
         <canvas id="graficoDependencia"></canvas>
       </div>
     </div>
 
-    <p class="footer-nota">
-      Nota: los valores corresponden al número de respuestas por categoría (n = 23). 
-    </p>
+    <p class="footer-nota">Nota: los valores corresponden al número de respuestas por categoría (n = 23). </p>
   </section>
 
-  <!-- ===== 4. SECCIÓN VIDEO ===== -->
+  <!-- SECCIÓN VIDEO -->
   <section class="section-video" id="video">
     <div class="seccion-header">
-      <div class="seccion-icono">
-        <i class="fas fa-video"></i>
+      <div class="seccion-icono" data-info="Contenido audiovisual complementario">
+        <i class="fa-solid fa-video"></i>
       </div>
       <div class="badge-titulo">Material complementario</div>
     </div>
     <h1>Video Informativo</h1>
-
-    <div class="subtitulo">
-      Contenido audiovisual relacionado con el uso de la tecnología y la conectividad en el ámbito de la salud.
-    </div>
+    <div class="subtitulo">Contenido audiovisual relacionado con el uso de la tecnología y la conectividad en el ámbito de la salud. </div>
 
     <div class="contenido">
       <div class="texto">
-        <p>
-          Este video complementa los resultados de la encuesta, ofreciendo una perspectiva más amplia
-          sobre el impacto de la conectividad y el uso de dispositivos tecnológicos en nuestra vida diaria.
-        </p>
-        <p>
-          El contenido audiovisual permite comprender de manera más dinámica los conceptos relacionados
-          con la <strong>dependencia digital</strong>, las <strong>consecuencias del uso excesivo</strong>
-          de la tecnología y las estrategias para mantener un equilibrio saludable en nuestra relación
-          con los dispositivos electrónicos.
-        </p>
+        <p>Este video complementa los resultados de la encuesta, ofreciendo una perspectiva más amplia sobre el impacto de la conectividad y el uso de dispositivos tecnológicos en nuestra vida diaria.</p>
+        <p>El contenido audiovisual permite comprender de manera más dinámica los conceptos relacionados con la <strong>dependencia digital</strong>, las <strong>consecuencias del uso excesivo</strong> de la tecnología y las estrategias para mantener un equilibrio saludable. </p>
       </div>
-
       <div class="tarjeta-grafico">
         <div class="video-container">
-          <iframe 
-            src="https://www.youtube.com/embed/lOoLmGcnBfU" 
-            title="Video sobre conectividad" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/lOoLmGcnBfU" title="Video sobre conectividad" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
       </div>
     </div>
 
-    <p class="footer-nota">
-      Nota: Este video es material de apoyo para complementar el análisis de la encuesta. 
-    </p>
+    <p class="footer-nota">Nota: Este video es material de apoyo para complementar el análisis de la encuesta.</p>
   </section>
 
-  <!-- ===== PIE DE PÁGINA ===== -->
+  <!-- SECCIÓN PRESENTACIÓN CANVA -->
+  <section class="section-canva" id="canva">
+    <div class="seccion-header">
+      <div class="seccion-icono" data-info="Presentación interactiva">
+        <i class="fa-solid fa-presentation-screen"></i>
+      </div>
+      <div class="badge-titulo">Material visual</div>
+    </div>
+    <h1>Presentación del Estudio</h1>
+    <div class="subtitulo">Presentación interactiva creada en Canva con información complementaria sobre la encuesta.</div>
+    <div class="contenido" style="flex-direction: column;">
+      <div class="texto" style="max-width: 100%; margin-bottom: 30px;">
+        <p>Esta presentación resume de manera visual los principales hallazgos del estudio sobre conectividad y hábitos digitales en estudiantes universitarios del área de la salud.</p>
+      </div>
+      <div class="canva-container" style="text-align:center;">
+        <a href="https://www.canva.com/design/DAG51zrHhMQ/dHWd2gwjMkVuiU3kx2tO8w/view" target="_blank" rel="noopener" class="btn-canva">
+          <i class="fa-solid fa-presentation-screen"></i>
+          Ver presentación en Canva
+        </a>
+      </div>
+    </div>
+    <p class="footer-nota">Nota: Haz clic en la presentación para navegar entre las diapositivas.</p>
+  </section>
+
+  <!-- SECCIÓN CONCLUSIONES -->
+  <section class="section-conclusiones" id="conclusiones">
+    <div class="seccion-header">
+      <div class="seccion-icono" data-info="Resumen de hallazgos">
+        <i class="fa-solid fa-check-circle"></i>
+      </div>
+      <div class="badge-titulo">Cierre del estudio</div>
+    </div>
+    <h1>Conclusiones</h1>
+    <div class="subtitulo">Principales hallazgos y recomendaciones derivadas del análisis de la encuesta.</div>
+
+    <div class="texto">
+      <p>A partir del análisis de los datos recopilados en la encuesta, se pueden establecer las siguientes conclusiones sobre el uso de la conectividad y sus efectos en los estudiantes universitarios del área de la salud:</p>
+    </div>
+
+    <ul class="conclusiones-lista">
+      <li data-info="Hallazgo principal del estudio">
+        <i class="fa-solid fa-lightbulb"></i>
+        <div class="conclusion-texto">
+          <strong>Alta percepción de dependencia digital</strong>
+          <span>El 87% de los encuestados reconoce que la conectividad puede generar dependencia o adicción, lo que demuestra una alta conciencia sobre los riesgos del uso excesivo de tecnología.</span>
+        </div>
+      </li>
+      <li data-info="Consecuencia más reportada">
+        <i class="fa-solid fa-clock"></i>
+        <div class="conclusion-texto">
+          <strong>Distracción como principal consecuencia</strong>
+          <span>La distracción o pérdida de tiempo fue la consecuencia negativa más reportada (56.5%), seguida del cansancio visual (43.5%), evidenciando el impacto en la productividad académica.</span>
+        </div>
+      </li>
+      <li data-info="Impacto en la salud">
+        <i class="fa-solid fa-eye"></i>
+        <div class="conclusion-texto">
+          <strong>Efectos físicos significativos</strong>
+          <span>Además del cansancio visual, se reportaron problemas para dormir (21.7%) y estrés o ansiedad (4.3%), indicando que el uso excesivo afecta la salud física y mental.</span>
+        </div>
+      </li>
+      <li data-info="Recomendación del estudio">
+        <i class="fa-solid fa-heart"></i>
+        <div class="conclusion-texto">
+          <strong>Necesidad de promover hábitos saludables</strong>
+          <span>Los resultados sugieren la importancia de implementar estrategias educativas que promuevan un uso equilibrado y consciente de la tecnología entre los estudiantes universitarios.</span>
+        </div>
+      </li>
+    </ul>
+
+    <p class="footer-nota">Nota: Estas conclusiones se basan en los datos recopilados de 23 estudiantes de diferentes programas académicos del área de la salud.</p>
+  </section>
+
+  <!-- FOOTER -->
   <footer>
     <div class="footer-contenido">
       <div class="footer-info-principal">
-        <img src="https://colombiaestudia.com/wp-content/uploads/2021/06/Logo_UNIMETRO.jpg" alt="Logo Unimetro">
+        <img src="https://colombiaestudia.com/wp-content/uploads/2021/06/Logo_UNIMETRO.jpg" alt="Logo Unimetro" data-info="Universidad Metropolitana de Barranquilla">
         <div class="footer-texto">
           <strong>Universidad Metropolitana de Barranquilla</strong>
           <span>Programa de Nutrición y Dietética</span>
@@ -890,206 +1408,206 @@
         <span>Semestre: 1</span>
       </div>
     </div>
-    <div class="footer-copy">
-      © 2025 — Todos los derechos reservados
-    </div>
+    <div class="footer-copy">© 2025 — Todos los derechos reservados</div>
   </footer>
 
-  <!-- ===== SCRIPTS ===== -->
+  <!-- BOTÓN VOLVER ARRIBA -->
+  <button class="btn-arriba" id="btnArriba" aria-label="Volver arriba"><i class="fa-solid fa-arrow-up"></i></button>
+
+  <!-- LIBRERÍAS -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
+
+  <!-- SCRIPTS -->
   <script>
-    Chart.register(ChartDataLabels);
-    Chart.defaults.font.family = "'Lato', sans-serif";
+    // Ocultar preloader al cargar
+    window.addEventListener('load', function(){
+      var preloader = document.getElementById('preloader');
+      if (preloader) preloader.classList.add('hidden');
+    });
 
-    function toggleTema() {
-      var body = document.body;
-      var icono = document.getElementById('icono-tema');
-      
-      if (body.getAttribute('data-theme') === 'dark') {
-        body.removeAttribute('data-theme');
-        icono.classList.remove('fa-sun');
-        icono.classList.add('fa-moon');
-      } else {
-        body.setAttribute('data-theme', 'dark');
-        icono.classList.remove('fa-moon');
-        icono.classList.add('fa-sun');
+    // Efecto typing en el título
+    (function(){
+      var el = document.getElementById('typingText');
+      if (!el) return;
+      var texto = 'Resultados de la encuesta';
+      var i = 0;
+      function escribir(){
+        if (i <= texto.length){
+          el.textContent = texto.slice(0, i);
+          i++;
+          setTimeout(escribir, 80);
+        }
       }
-    }
-
-    (function() {
-      var ctx = document.getElementById('graficoProgramas').getContext('2d');
-      var labels = ['Bacteriología', 'Medicina', 'Fisioterapia', 'Terapia Ocupacional', 'Psicología', 'Odontología', 'Optometría', 'Enfermería'];
-      var dataValues = [62.5, 12.5, 12.5, 12.5, 0, 0, 0, 0];
-      var colors = ['#3498db', '#e74c3c', '#2ecc71', '#f39c12', '#9b59b6', '#1abc9c', '#e91e63', '#00bcd4'];
-
-      new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: dataValues,
-            backgroundColor: colors,
-            borderWidth: 2,
-            borderColor: '#ffffff',
-            hoverOffset: 8
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'right',
-              labels: {
-                boxWidth: 14,
-                boxHeight: 14,
-                padding: 10,
-                font: { size: 11 },
-                usePointStyle: true,
-                pointStyle: 'circle'
-              }
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              padding: 12,
-              cornerRadius: 8,
-              callbacks: {
-                label: function(context) {
-                  return ' ' + context.label + ': ' + context.raw + '%';
-                }
-              }
-            },
-            datalabels: {
-              color: '#fff',
-              font: { weight: 'bold', size: 12 },
-              formatter: function(value) {
-                if (value === 0) return '';
-                return value + '%';
-              }
-            }
-          }
-        }
-      });
+      escribir();
     })();
 
-    (function() {
-      var ctx = document.getElementById('graficoConsecuencias').getContext('2d');
-      var labels = ['Cansancio visual', 'Distracción o pérdida de tiempo', 'Aislamiento social', 'Problemas para dormir', 'Estrés o ansiedad'];
-      var valores = [10, 13, 3, 5, 1];
+    // Barra de progreso de scroll
+    (function(){
+      var barra = document.getElementById('barraProgreso');
+      if (!barra) return;
+      function actualizar(){
+        var scroll = document.documentElement.scrollTop || document.body.scrollTop;
+        var altura = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var porcentaje = altura ? (scroll/altura)*100 : 0;
+        barra.style.width = porcentaje + '%';
+      }
+      window.addEventListener('scroll', actualizar);
+      actualizar();
+    })();
 
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: labels,
-          datasets: [{
-            label: 'Respuestas',
-            data: valores,
-            backgroundColor: ['rgba(155,89,182,0.85)', 'rgba(142,68,173,0.85)', 'rgba(175,122,197,0.85)', 'rgba(165,105,189,0.85)', 'rgba(195,155,211,0.85)'],
-            borderColor: ['#9b59b6', '#8e44ad', '#af7ac5', '#a569bd', '#c39bd3'],
-            borderWidth: 2,
-            borderRadius: 6,
-            borderSkipped: false
-          }]
-        },
-        options: {
-          indexAxis: 'y',
-          responsive: true,
-          scales: {
-            x: {
-              beginAtZero: true,
-              max: 15,
-              ticks: { stepSize: 3 },
-              grid: { color: 'rgba(0,0,0,0.05)' }
-            },
-            y: {
-              grid: { display: false }
-            }
+    // Botón volver arriba
+    (function(){
+      var btn = document.getElementById('btnArriba');
+      if (!btn) return;
+      window.addEventListener('scroll', function(){
+        if (window.scrollY > 300) btn.classList.add('visible'); else btn.classList.remove('visible');
+      });
+      btn.addEventListener('click', function(){ window.scrollTo({ top: 0, behavior: 'smooth' }); });
+    })();
+
+    // IntersectionObserver para mostrar secciones
+    (function(){
+      var observador = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){ if (e.isIntersecting) e.target.classList.add('visible'); });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('section').forEach(function(s){ observador.observe(s); });
+    })();
+
+    // Contadores animados
+    (function(){
+      function animar(el){
+        var destino = parseFloat(el.getAttribute('data-target') || '0');
+        var actual = 0;
+        var inicio = null;
+        function paso(ts){
+          if (!inicio) inicio = ts;
+          var progreso = Math.min((ts - inicio)/1200, 1);
+          actual = Math.floor(progreso * destino);
+          el.textContent = actual;
+          if (progreso < 1) requestAnimationFrame(paso);
+        }
+        requestAnimationFrame(paso);
+      }
+      document.querySelectorAll('.stat-numero').forEach(animar);
+    })();
+
+    // Gráficos con porcentajes
+    (function(){
+      if (!window.Chart || !window.ChartDataLabels) return;
+      Chart.register(ChartDataLabels);
+      var ctxConsecuencias = document.getElementById('graficoConsecuencias');
+      if (ctxConsecuencias){
+        new Chart(ctxConsecuencias, {
+          type: 'bar',
+          data: {
+            labels: ['Distracción', 'Cansancio visual', 'Problemas para dormir', 'Aislamiento social', 'Estrés/Ansiedad'],
+            datasets: [{
+              label: 'Respuestas',
+              data: [13, 10, 5, 3, 1],
+              backgroundColor: 'rgba(201,162,39,0.6)'
+            }]
           },
-          plugins: {
-            legend: { display: false },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              padding: 12,
-              cornerRadius: 8,
-              callbacks: {
-                label: function(context) {
-                  var value = context.raw;
-                  var porcentaje = ((value / 23) * 100).toFixed(1);
-                  return ' ' + value + ' respuestas (' + porcentaje + '%)';
-                }
-              }
-            },
-            datalabels: {
-              anchor: 'end',
-              align: 'end',
-              color: '#7d3c98',
-              font: { weight: 'bold', size: 11 },
-              formatter: function(value) {
-                var porcentaje = ((value / 23) * 100).toFixed(1);
-                return value + ' (' + porcentaje + '%)';
+          options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: {
+              legend: { display: false },
+              datalabels: {
+                color: '#fff',
+                anchor: 'end',
+                align: 'right',
+                formatter: function(value, ctx){
+                  var data = ctx.chart.data.datasets[0].data;
+                  var total = data.reduce(function(a,b){ return a+b; },0);
+                  var pct = (value/total*100).toFixed(1) + '%';
+                  return value + ' (' + pct + ')';
+                },
+                font: { size: 12, weight: '600' }
               }
             }
           }
-        }
-      });
-    })();
-
-    (function() {
-      var ctx = document.getElementById('graficoDependencia').getContext('2d');
-      var labels = ['De acuerdo', 'En desacuerdo', 'Totalmente en desacuerdo'];
-      var valores = [20, 2, 1];
-      var colors = ['#3498db', '#e74c3c', '#f39c12'];
-
-      new Chart(ctx, {
-        type: 'pie',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: valores,
-            backgroundColor: colors,
-            borderWidth: 2,
-            borderColor: '#ffffff',
-            hoverOffset: 8
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'right',
-              labels: {
-                boxWidth: 14,
-                boxHeight: 14,
-                padding: 10,
-                font: { size: 11 },
-                usePointStyle: true,
-                pointStyle: 'circle'
-              }
-            },
-            tooltip: {
-              backgroundColor: 'rgba(0,0,0,0.8)',
-              padding: 12,
-              cornerRadius: 8,
-              callbacks: {
-                label: function(context) {
-                  var value = context.raw;
-                  var porcentaje = ((value / 23) * 100).toFixed(1);
-                  return ' ' + context.label + ': ' + value + ' (' + porcentaje + '%)';
-                }
-              }
-            },
-            datalabels: {
-              color: '#fff',
-              font: { weight: 'bold', size: 12 },
-              formatter: function(value) {
-                var porcentaje = ((value / 23) * 100).toFixed(1);
-                return porcentaje + '%';
+        });
+      }
+      var ctxDependencia = document.getElementById('graficoDependencia');
+      if (ctxDependencia){
+        new Chart(ctxDependencia, {
+          type: 'pie',
+          data: {
+            labels: ['De acuerdo', 'En desacuerdo', 'Totalmente en desacuerdo'],
+            datasets: [{ data: [20, 2, 1], backgroundColor: ['#27ae60','#e67e22','#c0392b'] }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: 'bottom' },
+              datalabels: {
+                color: '#fff',
+                formatter: function(value, ctx){
+                  var data = ctx.chart.data.datasets[0].data;
+                  var total = data.reduce(function(a,b){ return a+b; },0);
+                  return (value/total*100).toFixed(1) + '%';
+                },
+                font: { size: 14, weight: '600' }
               }
             }
           }
-        }
-      });
+        });
+      }
     })();
+
+    // Cursor personalizado (movimiento y efectos hover)
+    (function(){
+      var cursor = document.getElementById('cursor');
+      var dot = document.getElementById('cursorDot');
+      if (!cursor || !dot) return;
+      var x = window.innerWidth/2, y = window.innerHeight/2;
+      var tx = x, ty = y;
+      var rafId;
+      function loop(){
+        x += (tx - x) * 0.15;
+        y += (ty - y) * 0.15;
+        cursor.style.left = x + 'px';
+        cursor.style.top = y + 'px';
+        dot.style.left = tx + 'px';
+        dot.style.top = ty + 'px';
+        rafId = requestAnimationFrame(loop);
+      }
+      loop();
+      window.addEventListener('mousemove', function(e){ tx = e.clientX; ty = e.clientY; });
+      document.querySelectorAll('a, button, .seccion-icono, .tarjeta-grafico').forEach(function(el){
+        el.addEventListener('mouseenter', function(){ cursor.classList.add('hover'); });
+        el.addEventListener('mouseleave', function(){ cursor.classList.remove('hover'); });
+      });
+      if ('ontouchstart' in window || navigator.maxTouchPoints > 0){
+        cursor.style.display = 'none';
+        dot.style.display = 'none';
+        document.body.style.cursor = 'auto';
+      }
+    })();
+
+    // Sorpresa (confetti al hacer clic en el logo del header)
+    (function(){
+      var logo = document.getElementById('headerLogo');
+      if (!logo) return;
+      function lanzarConfetti(){
+        var colores = ['#e74c3c','#f39c12','#27ae60','#2980b9','#8e44ad','#c9a227','#e91e63','#00bcd4'];
+        var cantidad = 50;
+        for (var i=0;i<cantidad;i++){
+          var pieza = document.createElement('span');
+          pieza.className = 'confetti';
+          pieza.style.left = (Math.random()*100)+'vw';
+          pieza.style.background = colores[Math.floor(Math.random()*colores.length)];
+          pieza.style.opacity = (0.7 + Math.random()*0.3).toString();
+          pieza.style.transform = 'scale('+(0.6+Math.random()*0.8)+')';
+          document.body.appendChild(pieza);
+          setTimeout(function(p){ return function(){ p.remove(); }; }(pieza), 3200);
+        }
+      }
+      logo.addEventListener('click', lanzarConfetti);
+    })();
+
+    // No iframe de Canva; se usa botón externo
   </script>
 </body>
 </html>
